@@ -4,10 +4,11 @@ import { createEmbed } from "../../utils/functions/createEmbed";
 import { BaseCommand } from "../../structures/BaseCommand";
 import { Command } from "../../utils/decorators/Command";
 import i18n from "../../config";
+import { memberReqPerms } from "../../utils/decorators/CommonUtil.js";
 
 @Command({
-    aliases: ["clean"],
-    description: i18n.__("commands.music.stop.description"),
+    aliases: [],
+    description: "CLEANNNNNN",
     name: "clean",
     slash: {
         options: []
@@ -15,6 +16,7 @@ import i18n from "../../config";
     usage: "{prefix}clean"
 })
 export class CleanCommand extends BaseCommand {
+    @memberReqPerms(["MANAGE_MESSAGES"], i18n.__("commands.moderation.warn.userNoPermission"))
     public async execute(ctx: CommandContext): Promise<void> {
         const msgs = await ctx.channel?.messages.fetch({limit: 100});
         if (!msgs) {
